@@ -28,12 +28,6 @@ configmap:
 secret:
     name: travelbooking-dev-postgre-jwt-credentials
 
-bookingService:
-    servicename: booking-svc
-
-notificationService:
-    servicename: notification-svc
-
 resources:
     requests: 
       cpu: "100m"
