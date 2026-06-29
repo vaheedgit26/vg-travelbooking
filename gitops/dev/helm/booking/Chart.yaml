@@ -1,5 +1,5 @@
 apiVersion: v2
-name: travel-booking
+name: travelbooking-booking
 description: Travel Booking Platform - Booking Helm Chart
 type: application
 version: 0.1.0
