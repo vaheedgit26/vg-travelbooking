@@ -1,1 +1,84 @@
+# ──────────────────────────────────────
+# Search
+# ──────────────────────────────────────
+namespace: travelbooking
 
+image:
+    uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
+    name: travelbooking/search
+    version: v1
+
+deployment:
+    name: search
+    replicas: 1
+
+service:
+    name: search-svc
+    port: 3004
+    targetPort: 3004
+
+hpa:
+    name: search-hpa
+    minReplicas: 1
+    maxReplicas: 3
+
+configmap:
+    name: search-config
+
+secret:
+    name: travelbooking-dev-postgre-jwt-credentials
+
+bookingService:
+    servicename: booking-svc
+
+notificationService:
+    servicename: notification-svc
+
+resources:
+    requests: 
+      cpu: "100m"
+      memory: "128Mi" 
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+
+# ──────────────────────────────────────
+# Postgre DB
+# ──────────────────────────────────────
+postgre:
+  host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
+  port: 5432
+  externalNameService: travelbooking-postgre
+  database: searchdb
+  user: postgre
+  sslmode: disable
+    
+jwtSecret: ""
+
+# ──────────────────────────────────────
+# Redis
+# ──────────────────────────────────────
+redis:
+  host:
+  port:
+# ──────────────────────────────────────
+# Ingress
+# ──────────────────────────────────────
+ ingress:
+    enabled: false
+    name: travelbooking-booking-ingress
+    ingressClassName: alb
+    path: /api
+    pathType: Prefix
+    host: ""
+
+    annotations:
+      # Backend-specific health check
+      alb.ingress.kubernetes.io/healthcheck-path: /health
+      alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    
+      # This is important to mix all the service ingresses and form one complete ingress
+      alb.ingress.kubernetes.io/group.name: shopverse-dev    # This should be same in all the ingress.yaml files to collaboratively create single ALB
+
+      alb.ingress.kubernetes.io/group.order: "1"   # 🔥 higher priority
+      
