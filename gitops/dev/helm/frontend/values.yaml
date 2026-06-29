@@ -9,38 +9,24 @@ image:
     version: v1
 
 deployment:
-    name: travelbooking-frontend
+    name: frontend-deploy
     replicas: 1
 
 service:
-    name: travelbooking-frontend-svc
+    name: frontend-svc
     port: 80
     targetPort: 80
 
 hpa:
-    name: booking-service-hpa
+    name: frontend-hpa
     minReplicas: 1
     maxReplicas: 3
 
 configmap:
-    name: travelbooking-booking-config
+    name: frontend-config
 
 secret:
     name: travelbooking-dev-postgre-jwt-credentials
-
-userService:
-    servicename: user-service-svc
-
-notificationService:
-    servicename: notification-service-svc
-
-resources:
-    requests: 
-      cpu: "100m"
-      memory: "128Mi" 
-    limits:
-      cpu: "200m"
-      memory: "256Mi"
 
 # ──────────────────────────────────────
 # Postgre DB
