@@ -45,8 +45,8 @@ jwtSecret: ""
 # Redis
 # ──────────────────────────────────────
 redis:
-  host:
-  port:
+  host: redis-svc
+  port: 6379
   
 # ──────────────────────────────────────
 # Ingress
