@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.notificationService.servicename }}
+  name: {{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
   labels:
     app: notification-service
@@ -11,5 +11,5 @@ spec:
     app: notification-service
   ports:
   - name: http
-    port: 3005
-    targetPort: 3005
+    port: {{ .Values.service.port }} # 3005
+    targetPort: {{ .Values.service.targetPort }} # 3005
