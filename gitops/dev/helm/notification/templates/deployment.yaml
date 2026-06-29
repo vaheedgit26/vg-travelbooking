@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.notificationService.deploymentname }}
+  name: {{ .Values.deployment.name }}
   namespace: {{ .Values.namespace }}
   labels:
     app: notification-service
 spec:
-  replicas: {{ .Values.notificationService.replicas }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: notification-service
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: notification-service
-        image: {{ .Values.notificationService.image }}
+        image: "{{ include "travelbooking.notification.image" . }}"
         imagePullPolicy: Always
         ports:
         - name: http
@@ -47,6 +47,6 @@ spec:
           failureThreshold: 3
         envFrom:
         - configMapRef:
-            name: notification-service-config
+            name: {{ .Values.configmap.name }} 
         - secretRef:
-            name: notification-service-secret
+            name: {{ .Values.secret.name }}
