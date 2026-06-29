@@ -42,7 +42,7 @@ postgre:
   port: 5432
   externalNameService: travelbooking-postgre-ens
   database: bookingdb
-  user: shopverse
+  user: postgres
   sslmode: disable
     
 jwtSecret: ""
