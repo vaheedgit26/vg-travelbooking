@@ -1,7 +1,7 @@
 # ──────────────────────────────────────
 # User
 # ──────────────────────────────────────
-namespace: travelbooking
+namespace: travelbooking-dev
 
 image:
     uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
