@@ -4,11 +4,11 @@ module "ecr" {
   project = var.project   # "travelbooking"
   env     = var.env       # "dev"
   repositories = [
-    "forntend",
-    "user",
-    "search",
-    "booking",
-    "payment",
-    "notification"
+    "travelbooking/forntend",
+    "travelbooking/user",
+    "travelbooking/search",
+    "travelbooking/booking",
+    "travelbooking/payment",
+    "travelbooking/notification"
   ]
 }
