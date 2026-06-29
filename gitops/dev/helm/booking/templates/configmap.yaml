@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.booking.configmap.name }} # travelbooking-booking-config
+  name: {{ .Values.configmap.name }} # travelbooking-booking-config
   namespace: {{ .Values.namespace }}
 data:
   NODE_ENV: production
-  PORT: {{ .Values.booking.service.targetPort | quote }} # "3003"
+  PORT: {{ .Values.service.targetPort | quote }} # "3003"
   DB_HOST: {{ .Values.postgre.externalNameService | quote }}
   DB_PORT: {{ .Values.postgre.port | quote }}
   DB_NAME: {{ .Values.postgre.database | quote }}
