@@ -28,7 +28,7 @@ hpa:
 postgre:
   host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
   port: 5432
-  externalNameService: travelbooking-postgre
+  externalNameService: travelbooking-postgre-ens
   database: bookingdb
   user: shopverse
   sslmode: disable
