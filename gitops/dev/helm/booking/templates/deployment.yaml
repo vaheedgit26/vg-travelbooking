@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.booking.deployment.name }}
-  namespace: {{ .Values.booking.deployment.namespace }}
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace }}
   labels:
     app: booking-service
 spec:
-  replicas: {{ .Values.booking.deployment.replicas }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: booking-service
@@ -47,6 +47,6 @@ spec:
           failureThreshold: 3
         envFrom:
         - configMapRef:
-            name: {{ .Values.booking.configmap.name }}   # travelbooking-booking-config
+            name: {{ .Values.configmap.name }}   # travelbooking-booking-config
         - secretRef:
-            name: {{ .Values.booking.secret.name }}      # travelbooking-dev-postgre-jwt-credentials
+            name: {{ .Values.secret.name }}      # travelbooking-dev-postgre-jwt-credentials
