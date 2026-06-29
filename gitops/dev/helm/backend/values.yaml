@@ -1,0 +1,61 @@
+# ──────────────────────────────────────
+# Backend
+# ──────────────────────────────────────
+backend:
+  image:
+    uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
+    name: shopverse-backend
+    version: v1
+
+  deployment:
+    name: shopverse-backend
+    replicas: 1
+    
+  service:
+    name: shopverse-backend-svc
+    port: 8080
+    targetPort: 8080
+
+  configmap:
+    name: shopverse-config
+
+  secret:
+    name: shopverse-dev-mysql-jwt-credentials
+
+  resources:
+    requests: 
+      cpu: "100m"
+      memory: "128Mi" 
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+      
+  ingress:
+    enabled: false
+    name: shopverse-backend-ingress
+    ingressClassName: alb
+    path: /api
+    pathType: Prefix
+    host: ""
+
+    annotations:
+      # Backend-specific health check
+      alb.ingress.kubernetes.io/healthcheck-path: /health
+      alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    
+      # This is important to mix all the service ingresses and form one complete ingress
+      alb.ingress.kubernetes.io/group.name: shopverse-dev    # This should be same in all the ingress.yaml files to collaboratively create single ALB
+
+      alb.ingress.kubernetes.io/group.order: "1"   # 🔥 higher priority
+      
+# ──────────────────────────────────────
+# MySQL
+# ──────────────────────────────────────
+mysql:
+  host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
+  port: 3306
+  externalNameService: shopverse-mysql
+  database: shopverse
+  user: shopverse
+    
+jwtSecret: ""

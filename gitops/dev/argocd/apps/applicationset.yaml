@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: shopverse-dev-applicationset
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+        - project: shopverse
+          env: dev
+          component: backend
+        - project: shopverse
+          env: dev
+          component: frontend
+  # Application template
+  template:
+    metadata:
+      name: "{{project}}-{{env}}-{{component}}"
+      namespace: argocd
+      labels:
+        env: "{{env}}"
+        project: "{{project}}"
+        component: "{{component}}"
+        app.kubernetes.io/part-of: "{{project}}"
+
+      annotations:
+        # 🔹 SYNC WAVES (CRITICAL)
+        argocd.argoproj.io/sync-wave: >
+          {{- if eq .component "database" -}}0
+          {{- else if eq .component "backend" -}}1
+          {{- else if eq .component "frontend" -}}2
+          {{- else -}}3
+          {{- end }}
+
+        # 🔹 Notifications
+        #notifications.argoproj.io/subscribe.on-deployed.email: "expense-{{env}}-{{path.basename}}@example.com"
+        #notifications.argoproj.io/subscribe.on-health-degraded.email: "expense-{{env}}-{{path.basename}}@example.com"
+        #notifications.argoproj.io/subscribe.on-sync-failed.email: "expense-{{env}}-{{path.basename}}@example.com"
+
+    spec:
+      project: "{{project}}-{{env}}"         # This name should match with the name of 'AppProject' created previously
+      
+      source:
+        repoURL: https://github.com/vaheedgit26/vg-shopverse.git
+        targetRevision: main
+        path: "gitops/dev/helm/{{component}}"
+        helm:
+          releaseName: "{{project}}-{{env}}-{{component}}"  # must be <= 53 chars
+          valueFiles:
+            - values.yaml
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{project}}-{{env}}"
+
+      syncPolicy:
+        automated:
+          prune: true          # delete resources not in Git
+          selfHeal: true       # revert out-of-band changes
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+          - ServerSideApply=true
+          - PruneLast=true
