@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.paymentService.deploymentname }}
+  name: {{ .Values.deployment.name }}
   namespace: {{ .Values.namespace }}
   labels:
     app: payment-service
 spec:
-  replicas: {{ .Values.paymentService.replicas }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: payment-service
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: payment-service
-        image: {{ .Values.paymentService.image }}
+        image: "{{ include "travelbooking.payment.image" . }}"
         imagePullPolicy: Always
         ports:
         - name: http
@@ -47,6 +47,6 @@ spec:
           failureThreshold: 3
         envFrom:
         - configMapRef:
-            name: payment-service-config
+            name: {{ .Values.configmap.name }} 
         - secretRef:
-            name: payment-service-secret
+            name: {{ .Values.secret.name }} 
