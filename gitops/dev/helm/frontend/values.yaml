@@ -19,6 +19,8 @@ service:
 
 hpa:
     name: booking-service-hpa
+    minReplicas: 1
+    maxReplicas: 3
 
 configmap:
     name: travelbooking-booking-config
