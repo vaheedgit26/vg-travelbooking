@@ -1,1 +1,78 @@
+# ──────────────────────────────────────
+# Frontend
+# ──────────────────────────────────────
+namespace: travelbooking
 
+image:
+    uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
+    name: travelbooking/frontend
+    version: v1
+
+deployment:
+    name: travelbooking-frontend
+    replicas: 1
+
+service:
+    name: travelbooking-frontend-svc
+    port: 80
+    targetPort: 80
+
+hpa:
+    name: booking-service-hpa
+    minReplicas: 1
+    maxReplicas: 3
+
+configmap:
+    name: travelbooking-booking-config
+
+secret:
+    name: travelbooking-dev-postgre-jwt-credentials
+
+userService:
+    servicename: user-service-svc
+
+notificationService:
+    servicename: notification-service-svc
+
+resources:
+    requests: 
+      cpu: "100m"
+      memory: "128Mi" 
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+
+# ──────────────────────────────────────
+# Postgre DB
+# ──────────────────────────────────────
+postgre:
+  host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
+  port: 5432
+  externalNameService: travelbooking-postgre
+  database: bookingdb
+  user: shopverse
+  sslmode: disable
+    
+jwtSecret: ""
+
+# ──────────────────────────────────────
+# Ingress
+# ──────────────────────────────────────
+ ingress:
+    enabled: false
+    name: travelbooking-booking-ingress
+    ingressClassName: alb
+    path: /api
+    pathType: Prefix
+    host: ""
+
+    annotations:
+      # Backend-specific health check
+      alb.ingress.kubernetes.io/healthcheck-path: /health
+      alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    
+      # This is important to mix all the service ingresses and form one complete ingress
+      alb.ingress.kubernetes.io/group.name: shopverse-dev    # This should be same in all the ingress.yaml files to collaboratively create single ALB
+
+      alb.ingress.kubernetes.io/group.order: "1"   # 🔥 higher priority
+      
