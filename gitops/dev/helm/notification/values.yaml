@@ -1,46 +1,32 @@
 # ──────────────────────────────────────
-# Payment
+# notification
 # ──────────────────────────────────────
 namespace: travelbooking
 
 image:
     uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
-    name: travelbooking/payment
+    name: travelbooking/notification
     version: v1
 
 deployment:
-    name: payment
+    name: notification-deploy
     replicas: 1
 
 service:
-    name: payment-svc
-    port: 3004
-    targetPort: 3004
+    name: notification-svc
+    port: 3005
+    targetPort: 3005
 
 hpa:
-    name: payment-hpa
+    name: notification-hpa
     minReplicas: 1
     maxReplicas: 3
 
 configmap:
-    name: payment-config
+    name: notification-config
 
 secret:
     name: travelbooking-dev-postgre-jwt-credentials
-
-bookingService:
-    servicename: booking-svc
-
-notificationService:
-    servicename: notification-svc
-
-resources:
-    requests: 
-      cpu: "100m"
-      memory: "128Mi" 
-    limits:
-      cpu: "200m"
-      memory: "256Mi"
 
 # ──────────────────────────────────────
 # Postgre DB
@@ -48,8 +34,8 @@ resources:
 postgre:
   host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
   port: 5432
-  externalNameService: travelbooking-postgre
-  database: paymentdb
+  externalNameService: travelbooking-postgre-ens
+  database: notificationdb
   user: postgre
   sslmode: disable
     
