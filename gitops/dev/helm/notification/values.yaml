@@ -1,38 +1,38 @@
 # ──────────────────────────────────────
-# Frontend
+# Notification
 # ──────────────────────────────────────
 namespace: travelbooking
 
 image:
     uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
-    name: travelbooking/frontend
+    name: travelbooking/notification
     version: v1
 
 deployment:
-    name: travelbooking-frontend
+    name: notification
     replicas: 1
 
 service:
-    name: travelbooking-frontend-svc
+    name: notification-svc
     port: 80
     targetPort: 80
 
 hpa:
-    name: booking-service-hpa
+    name: notification-hpa
     minReplicas: 1
     maxReplicas: 3
 
 configmap:
-    name: travelbooking-booking-config
+    name: notification-config
 
 secret:
     name: travelbooking-dev-postgre-jwt-credentials
 
 userService:
-    servicename: user-service-svc
+    servicename: user-svc
 
 notificationService:
-    servicename: notification-service-svc
+    servicename: notification-svc
 
 resources:
     requests: 
@@ -49,12 +49,18 @@ postgre:
   host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
   port: 5432
   externalNameService: travelbooking-postgre
-  database: bookingdb
-  user: shopverse
+  database: notificationdb
+  user: postgre
   sslmode: disable
     
 jwtSecret: ""
 
+# ──────────────────────────────────────
+# Redis
+# ──────────────────────────────────────
+redis:
+  host:
+  port:
 # ──────────────────────────────────────
 # Ingress
 # ──────────────────────────────────────
