@@ -58,7 +58,7 @@ jwtSecret: ""
 # ──────────────────────────────────────
  ingress:
     enabled: false
-    name: shopverse-backend-ingress
+    name: travelbooking-booking-ingress
     ingressClassName: alb
     path: /api
     pathType: Prefix
