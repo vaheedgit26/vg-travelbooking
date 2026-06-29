@@ -22,12 +22,6 @@ hpa:
     minReplicas: 1
     maxReplicas: 3
 
-configmap:
-    name: frontend-config
-
-secret:
-    name: travelbooking-dev-postgre-jwt-credentials
-
 # ──────────────────────────────────────
 # Postgre DB
 # ──────────────────────────────────────
