@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.userService.deploymentname }}
+  name: {{ .Values.deployment.name }}
   namespace: {{ .Values.namespace }}
   labels:
     app: user-service
 spec:
-  replicas: {{ .Values.userService.replicas }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: user-service
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: {{ .Values.userService.image }}
+        image: "{{ include "travelbooking.user.image" . }}"
         imagePullPolicy: Always
         ports:
         - name: http
@@ -47,6 +47,6 @@ spec:
           failureThreshold: 3
         envFrom:
         - configMapRef:
-            name: user-service-config
+            name: {{ .Values.configmap.name }}
         - secretRef:
-            name: user-service-secret
+            name: {{ .Values.secret.name }}
