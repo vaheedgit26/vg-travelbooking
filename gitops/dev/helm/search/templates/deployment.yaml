@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.searchService.deploymentname }}
+  name: {{ .Values.deployment.name }}
   namespace: {{ .Values.namespace }}
   labels:
     app: search-service
 spec:
-  replicas: {{ .Values.searchService.replicas }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: search-service
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: search-service
-        image: {{ .Values.searchService.image }}
+        image: "{{ include "travelbooking.search.image" . }}"
         imagePullPolicy: Always
         ports:
         - name: http
@@ -47,6 +47,6 @@ spec:
           failureThreshold: 3
         envFrom:
         - configMapRef:
-            name: search-service-config
+            name: {{ .Values.configmap.name }} 
         - secretRef:
-            name: search-service-secret
+            name: {{ .Values.secret.name }}
