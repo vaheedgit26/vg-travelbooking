@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.booking.service.name }}
-  namespace: {{ .Values.booking.namespace.name }}
+  namespace: {{ .Values.booking.namespace }}
   labels:
     app: booking-service
 spec:
