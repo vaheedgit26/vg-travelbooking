@@ -41,6 +41,19 @@ resources:
       memory: "256Mi"
 
 # ──────────────────────────────────────
+# Postgre DB
+# ──────────────────────────────────────
+postgre:
+  host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
+  port: 5432
+  externalNameService: travelbooking-postgre
+  database: bookingdb
+  user: shopverse
+  sslmode: disable
+    
+jwtSecret: ""
+
+# ──────────────────────────────────────
 # Ingress
 # ──────────────────────────────────────
  ingress:
@@ -61,15 +74,3 @@ resources:
 
       alb.ingress.kubernetes.io/group.order: "1"   # 🔥 higher priority
       
-# ──────────────────────────────────────
-# Postgre DB
-# ──────────────────────────────────────
-postgre:
-  host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
-  port: 5432
-  externalNameService: travelbooking-postgre
-  database: bookingdb
-  user: shopverse
-  sslmode: disable
-    
-jwtSecret: ""
