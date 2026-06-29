@@ -9,7 +9,7 @@ image:
     version: v1
 
 deployment:
-    name: search
+    name: search-deploy
     replicas: 1
 
 service:
