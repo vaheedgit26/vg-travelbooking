@@ -5,8 +5,8 @@ set -euo pipefail
 # bash s3-bucket.sh <project_name> <env> <region> <action>
 #
 # Example:
-# bash s3-bucket.sh shopverse dev us-east-1 apply
-# bash s3-bucket.sh shopverse dev us-east-1 destroy
+# bash s3-bucket.sh travelbooking dev us-east-1 apply
+# bash s3-bucket.sh travelbooking dev us-east-1 destroy
 #################################################################
 R="\e[31m"
 G="\e[32m"
@@ -24,7 +24,7 @@ print_info() {
 # Parameters validation
 if [[ $# -ne 4 ]]; then 
   print_error "Usage: bash s3-bucket.sh <project> <env> <region> <action>"
-  print_info "Example: bash s3-bucket.sh shopverse dev us-east-1 plan"
+  print_info "Example: bash s3-bucket.sh travelbooking dev us-east-1 plan"
   exit 1
 fi
 
