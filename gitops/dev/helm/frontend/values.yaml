@@ -5,15 +5,15 @@ namespace: travelbooking
 
 image:
     uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
-    name: travelbooking/booking
+    name: travelbooking/frontend
     version: v1
 
 deployment:
-    name: travelbooking-booking
+    name: travelbooking-frontend
     replicas: 1
 
 service:
-    name: travelbooking-booking-svc
+    name: travelbooking-frontend-svc
     port: 3003
     targetPort: 3003
 
