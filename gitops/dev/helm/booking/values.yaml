@@ -1,47 +1,46 @@
 # ──────────────────────────────────────
-# Backend
+# Booking
 # ──────────────────────────────────────
-booking:
-  namespace: travelbooking
-    
-  image:
+namespace: travelbooking
+
+image:
     uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
     name: travelbooking/booking
     version: v1
 
-  deployment:
+deployment:
     name: travelbooking-booking
     replicas: 1
-    
-  service:
+
+service:
     name: travelbooking-booking-svc
     port: 3003
     targetPort: 3003
 
-  hpa:
+hpa:
     name: booking-service-hpa
 
-  configmap:
+configmap:
     name: travelbooking-booking-config
 
-  secret:
+secret:
     name: travelbooking-dev-postgre-jwt-credentials
 
-  userService:
+userService:
     servicename: user-service-svc
 
-  notificationService:
+notificationService:
     servicename: notification-service-svc
 
-  resources:
+resources:
     requests: 
       cpu: "100m"
       memory: "128Mi" 
     limits:
       cpu: "200m"
       memory: "256Mi"
-      
-  ingress:
+
+ ingress:
     enabled: false
     name: shopverse-backend-ingress
     ingressClassName: alb
@@ -60,7 +59,7 @@ booking:
       alb.ingress.kubernetes.io/group.order: "1"   # 🔥 higher priority
       
 # ──────────────────────────────────────
-# Postgre
+# Postgre DB
 # ──────────────────────────────────────
 postgre:
   host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
