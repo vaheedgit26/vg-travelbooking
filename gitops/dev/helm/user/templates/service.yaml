@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.userService.servicename }}
+  name: {{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
   labels:
     app: user-service
@@ -11,5 +11,5 @@ spec:
     app: user-service
   ports:
   - name: http
-    port: 3001
-    targetPort: 3001
+    port: {{ .Values.service.port }} # 3001
+    targetPort: {{ .Values.service.targetPort }} # 3001
