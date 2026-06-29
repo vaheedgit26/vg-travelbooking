@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: booking-service
-        image: {{ .Values.bookingService.image }}
+        image:  "{{ include "travelbooking.booking.image" . }}" 
         imagePullPolicy: Always
         ports:
         - name: http
@@ -47,6 +47,6 @@ spec:
           failureThreshold: 3
         envFrom:
         - configMapRef:
-            name: {{ .Values.booking.configmap.name }}   # travelbooking-booking-configg
+            name: {{ .Values.booking.configmap.name }}   # travelbooking-booking-config
         - secretRef:
-            name: {{ .Values.booking.secret.name }}   # travelbooking-dev-postgre-jwt-credentials
+            name: {{ .Values.booking.secret.name }}      # travelbooking-dev-postgre-jwt-credentials
