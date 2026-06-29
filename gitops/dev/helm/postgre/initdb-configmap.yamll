@@ -5,8 +5,8 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   init.sql: |
-    CREATE DATABASE {{ .Values.db.userDb }};
-    CREATE DATABASE {{ .Values.db.searchDb }};
-    CREATE DATABASE {{ .Values.db.bookingDb }};
-    CREATE DATABASE {{ .Values.db.paymentDb }};
-    CREATE DATABASE {{ .Values.db.notificationDb }};
+    CREATE DATABASE {{ .Values.db.userDb }};              # userdb
+    CREATE DATABASE {{ .Values.db.searchDb }};            # searchdb
+    CREATE DATABASE {{ .Values.db.bookingDb }};           # bookingdb
+    CREATE DATABASE {{ .Values.db.paymentDb }};           # paymentdb
+    CREATE DATABASE {{ .Values.db.notificationDb }};      # notificationdb
