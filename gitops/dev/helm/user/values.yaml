@@ -9,7 +9,7 @@ image:
     version: v1
 
 deployment:
-    name: user
+    name: user-deploy
     replicas: 1
 
 service:
@@ -28,33 +28,19 @@ configmap:
 secret:
     name: travelbooking-dev-postgre-jwt-credentials
 
-resources:
-    requests: 
-      cpu: "100m"
-      memory: "128Mi" 
-    limits:
-      cpu: "200m"
-      memory: "256Mi"
-
 # ──────────────────────────────────────
 # Postgre DB
 # ──────────────────────────────────────
 postgre:
   host: shopverse-dev-mysql.ca9aykaigakf.us-east-1.rds.amazonaws.com
   port: 5432
-  externalNameService: travelbooking-postgre
+  externalNameService: travelbooking-postgre-ens
   database: userdb
   user: postgre
   sslmode: disable
     
 jwtSecret: ""
 
-# ──────────────────────────────────────
-# Redis
-# ──────────────────────────────────────
-redis:
-  host:
-  port:
 # ──────────────────────────────────────
 # Ingress
 # ──────────────────────────────────────
