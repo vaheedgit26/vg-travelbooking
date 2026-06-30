@@ -35,7 +35,10 @@ baseIngress:
     alb.ingress.kubernetes.io/unhealthy-threshold-count: "2"
     
     # Grouping (very important for multiple ingresses)
-    alb.ingress.kubernetes.io/group.name: travelbooking
+    alb.ingress.kubernetes.io/group.name: travelbooking-dev
+
+    # Highest priority
+    alb.ingress.kubernetes.io/group.order: "0"
 
     # ACM Certificate
     # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:REGION:ACCOUNT:certificate/XXXX
@@ -43,5 +46,51 @@ baseIngress:
     # Force HTTPS
     # alb.ingress.kubernetes.io/ssl-redirect: "443"
 
+    
+
     # WAF (optional but real-world)
     # alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:REGION:ACCOUNT:regional/webacl/XXXX
+
+# ──────────────────────────────────────
+# Backend Ingress (for all apis)
+# ──────────────────────────────────────
+backendIngress:
+  enabled: false
+  name: travelbooking-backend-ingress
+  ingressClassName: alb
+  # path: /api
+  pathType: Prefix
+  host: ""
+
+  annotations:
+    # Backend-specific health check
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    
+    # This is important to mix all the service ingresses and form one complete ingress
+    alb.ingress.kubernetes.io/group.name: travelbooking-dev    # This should be same in all the ingress.yaml files to collaboratively create single ALB
+    
+    # 🔥 Higher priority
+    alb.ingress.kubernetes.io/group.order: "10"  
+    
+# ──────────────────────────────────────
+# Frontend Ingress
+# ──────────────────────────────────────
+frontendIngress:
+  enabled: false
+  name: travelbooking-frontend-ingress
+  ingressClassName: alb
+  path: /
+  pathType: Prefix
+  host: ""
+
+  annotations:
+    # Backend-specific health check
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+  
+    # This is important to mix all the service ingresses and form one complete ingress
+    alb.ingress.kubernetes.io/group.name: travelbooking-dev    # This should be same in all the ingress.yaml files to collaboratively create single ALB
+
+    # 🔥 Lower priority
+    alb.ingress.kubernetes.io/group.order: "20"   
