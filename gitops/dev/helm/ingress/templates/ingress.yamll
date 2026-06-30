@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: shopverse-ingress
+  name: travelbooking-ingress
   annotations:
     # External ALB
     alb.ingress.kubernetes.io/scheme: internet-facing                     # internal
@@ -39,18 +39,50 @@ spec:
     - http:
         paths:
         
-          - path: /api
+          - path: /api/users
             pathType: Prefix
             backend:
               service:
-                name: shopverse-backend-svc
+                name: user-svc
                 port:
-                  number: 8080
+                  number: 3001
+
+          - path: /api/search
+            pathType: Prefix
+            backend:
+              service:
+                name: search-svc
+                port:
+                  number: 3002
+
+          - path: /api/bookings
+            pathType: Prefix
+            backend:
+              service:
+                name: booking-svc
+                port:
+                  number: 3003
+
+          - path: /api/payments
+            pathType: Prefix
+            backend:
+              service:
+                name: payment-svc
+                port:
+                  number: 3004
+
+          - path: /api/notifications
+            pathType: Prefix
+            backend:
+              service:
+                name: notification-svc
+                port:
+                  number: 3005
 
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: shopverse-frontend-svc
+                name: frontend-svc
                 port:
                   number: 8080
