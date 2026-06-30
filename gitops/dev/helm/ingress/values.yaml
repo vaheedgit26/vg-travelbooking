@@ -2,6 +2,7 @@
 # Base Ingress
 # ──────────────────────────────────────
 baseIngress:
+
   enabled: false
   name: travelbooking-base-ingress
   ingressClassName: alb
