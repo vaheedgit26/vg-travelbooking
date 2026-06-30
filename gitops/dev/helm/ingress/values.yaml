@@ -3,7 +3,7 @@
 # ──────────────────────────────────────
 ingress:
   enabled: false
-  name: shopverse-base-ingress
+  name: travelbooking-base-ingress
   ingressClassName: alb
   
   annotations: 
@@ -35,7 +35,7 @@ ingress:
     alb.ingress.kubernetes.io/unhealthy-threshold-count: "2"
     
     # Grouping (very important for multiple ingresses)
-    alb.ingress.kubernetes.io/group.name: shopverse
+    alb.ingress.kubernetes.io/group.name: travelbooking
 
     # ACM Certificate
     # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:REGION:ACCOUNT:certificate/XXXX
