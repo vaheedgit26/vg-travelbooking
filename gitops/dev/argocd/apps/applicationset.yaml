@@ -32,6 +32,7 @@ spec:
               revision: main
               directories:
                 - path: gitops/dev/helm/*
+				
   # Application template
   template:
     metadata:
