@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.baseIngress.name }}                            # shopverse-base-ingress
   {{- with .Values.baseIngress.annotations }}
   annotations:
-  {{- toYaml . | nindent 4 }}
+  {{ toYaml . | nindent 4 }}
   {{- end }}
 spec:
   ingressClassName: {{ .Values.baseIngress.ingressClassName }}    # alb
