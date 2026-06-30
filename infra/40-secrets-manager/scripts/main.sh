@@ -4,7 +4,7 @@ set -euo pipefail
 # Usage: bash main.sh  <component> <env> <action> <aws-secret-name> [project bucket region]
 # Example:
 #   bash main.sh secrets-manager dev plan aws-secret-name [project bucket region]
-#   aws-secret-format:  /project/env/secret-name (example)
+#   aws-secret-format:  /project/env/aws-secret-name (example)
 #############################################################################################
 R="\e[31m"
 G="\e[32m"
