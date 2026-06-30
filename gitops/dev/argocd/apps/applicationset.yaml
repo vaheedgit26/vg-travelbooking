@@ -9,22 +9,15 @@ spec:
     # 🔥 MATRIX = envs × projects x services
     - matrix:
         generators:
-
-          # 🔹 ENVIRONMENTS
-          - list:
-              elements:
-                - env: dev
-                # - env: stage
-                # - env: prod
-
-          # 🔹 PROJECTS
           - list:
               elements:
                 - project: travelbooking
+                  env: dev
                   repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
                   
                 # 👉 future ready
                 # - project: paymentplatform
+                #   env: prod
                 #   repoURL: https://github.com/org/paymentplatform.git
 
           # 🔹 SERVICES (auto-discovered from ONE env only to avoid duplication)
