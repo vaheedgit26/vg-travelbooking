@@ -65,7 +65,7 @@ spec:
         path: "gitops/{{env}}/helm/{{path.basename}}"
 
         helm:
-          releaseName: "{{project}}-{{env}}-{{path.basename}}"
+          releaseName: "{{project}}-{{env}}-{{path.basename}}"   # must be <= 53 chars
           valueFiles:
             - values.yaml          
             
