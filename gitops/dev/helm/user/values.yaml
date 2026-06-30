@@ -40,25 +40,3 @@ postgre:
   sslmode: disable
     
 jwtSecret: ""
-
-# ──────────────────────────────────────
-# Ingress
-# ──────────────────────────────────────
- ingress:
-    enabled: false
-    name: travelbooking-booking-ingress
-    ingressClassName: alb
-    path: /api
-    pathType: Prefix
-    host: ""
-
-    annotations:
-      # Backend-specific health check
-      alb.ingress.kubernetes.io/healthcheck-path: /health
-      alb.ingress.kubernetes.io/healthcheck-port: traffic-port
-    
-      # This is important to mix all the service ingresses and form one complete ingress
-      alb.ingress.kubernetes.io/group.name: shopverse-dev    # This should be same in all the ingress.yaml files to collaboratively create single ALB
-
-      alb.ingress.kubernetes.io/group.order: "1"   # 🔥 higher priority
-      
