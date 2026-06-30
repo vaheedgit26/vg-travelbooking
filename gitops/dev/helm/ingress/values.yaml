@@ -58,7 +58,6 @@ backendIngress:
   enabled: false
   name: travelbooking-backend-ingress
   ingressClassName: alb
-  # path: /api
   pathType: Prefix
   host: ""
 
