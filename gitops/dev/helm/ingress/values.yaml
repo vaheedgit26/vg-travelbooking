@@ -5,9 +5,11 @@ baseIngress:
   enabled: false
   name: travelbooking-base-ingress
   ingressClassName: alb
-  frontendServiceName: frontend-svc
-  frontendServicePort: 8080
-  
+
+  path: /health
+  pathType: Prefix
+  serviceName: frontend-svc
+  servicePort: 8080 
   
   annotations: 
     # ALB Exposure
@@ -82,11 +84,13 @@ frontendIngress:
   enabled: false
   name: travelbooking-frontend-ingress
   ingressClassName: alb
+  host: ""
+  
   path: /
   pathType: Prefix
   serviceName: frontend-svc
   servicePort: 8080
-  host: ""
+  
 
   annotations:
     # Frontend-specific health check
