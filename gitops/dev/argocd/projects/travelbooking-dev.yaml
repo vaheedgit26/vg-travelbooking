@@ -14,7 +14,7 @@ spec:
   # Allowed destinations (namespaces + clusters)
   destinations:
     - server: https://kubernetes.default.svc
-      namespace: shopverse-dev
+      namespace: travelbooking-dev
     
   # Cluster-wide resources this AppProject can manage
   clusterResourceWhitelist:
