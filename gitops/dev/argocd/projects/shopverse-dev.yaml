@@ -9,7 +9,7 @@ spec:
     # - https://github.com/my-org/*              # Allow all repos under your org
     # - https://github.com/my-org/expense.git    # Or specific repo
     
-    - https://github.com/vaheedgit26/vg-shopverse.git
+    - https://github.com/vaheedgit26/vg-travelbooking.git
 
   # Allowed destinations (namespaces + clusters)
   destinations:
