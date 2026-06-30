@@ -61,6 +61,7 @@ baseIngress:
 # Backend Ingress (for all apis)
 # ──────────────────────────────────────
 backendIngress:
+
   enabled: false
   name: travelbooking-backend-ingress
   ingressClassName: alb
@@ -82,6 +83,7 @@ backendIngress:
 # Frontend Ingress
 # ──────────────────────────────────────
 frontendIngress:
+
   enabled: false
   name: travelbooking-frontend-ingress
   ingressClassName: alb
