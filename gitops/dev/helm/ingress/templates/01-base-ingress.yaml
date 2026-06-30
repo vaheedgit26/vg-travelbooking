@@ -14,11 +14,11 @@ spec:
   rules:
     - http:
         paths:
-          - path: /health
-            pathType: Prefix
+          - path: {{ .Values.baseIngress.path }}                # /health
+            pathType: {{ .Values.baseIngress.pathType }}        # Prefix
             backend:
               service:
-                name: frontend-svc
+                name: {{ .Values.baseIngress.serviceName }}     # frontend-svc
                 port:
-                  number: 8080 
+                  number: {{ .Values.baseIngress.servicePort }} # 8080 
 {{- end }}
