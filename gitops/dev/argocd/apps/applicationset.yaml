@@ -3,52 +3,73 @@ kind: ApplicationSet
 metadata:
   name: travelbooking-dev-applicationset
   namespace: argocd
+
 spec:
   generators:
-  - list:
-      elements:
-        - project: travelbooking
-          env: dev
-          component: frontend
-        - project: travelbooking
-          env: dev
-          component: user
+    # 🔥 MATRIX = envs × projects x services
+    - matrix:
+        generators:
+
+          # 🔹 ENVIRONMENTS
+          - list:
+              elements:
+                - env: dev
+                # - env: stage
+                # - env: prod
+
+          # 🔹 PROJECTS
+          - list:
+              elements:
+                - project: travelbooking
+                  repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
+                # 👉 future ready
+                # - project: paymentplatform
+                #   repoURL: https://github.com/org/paymentplatform.git
+
+          # 🔹 SERVICES (auto-discovered from ONE env only to avoid duplication)
+          - git:
+              repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
+              revision: main
+              directories:
+                - path: gitops/dev/helm/*
   # Application template
   template:
     metadata:
-      name: "{{project}}-{{env}}-{{component}}"
+      name: "{{project}}-{{env}}-{{path.basename}}"
       namespace: argocd
+
       labels:
-        env: "{{env}}"
         project: "{{project}}"
-        component: "{{component}}"
+        env: "{{env}}"
+        component: "{{path.basename}}"
         app.kubernetes.io/part-of: "{{project}}"
 
       annotations:
-        # 🔹 SYNC WAVES (CRITICAL)
+        # 🔹 Sync order
         argocd.argoproj.io/sync-wave: >
-          {{- if eq .component "database" -}}0
-          {{- else if eq .component "backend" -}}1
-          {{- else if eq .component "frontend" -}}2
+          {{- if eq .path.basename "database" -}}0
+          {{- else if or (eq .path.basename "user") (eq .path.basename "search") (eq .path.basename "booking") (eq .path.basename "payment") (eq .path.basename "notification") -}}1
+          {{- else if eq .path.basename "frontend" -}}2
           {{- else -}}3
           {{- end }}
 
-        # 🔹 Notifications
-        #notifications.argoproj.io/subscribe.on-deployed.email: "expense-{{env}}-{{path.basename}}@example.com"
-        #notifications.argoproj.io/subscribe.on-health-degraded.email: "expense-{{env}}-{{path.basename}}@example.com"
-        #notifications.argoproj.io/subscribe.on-sync-failed.email: "expense-{{env}}-{{path.basename}}@example.com"
-
     spec:
-      project: "{{project}}-{{env}}"         # This name should match with the name of 'AppProject' created previously
-      
+      project: "{{project}}-{{env}}"              # This name should match with the name of 'AppProject' created previously
+
       source:
-        repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
+        repoURL: "{{repoURL}}"
         targetRevision: main
-        path: "gitops/dev/helm/{{component}}"
+
+        # 🔥 dynamic env + service
+        path: "gitops/{{env}}/helm/{{path.basename}}"
+
         helm:
-          releaseName: "{{project}}-{{env}}-{{component}}"  # must be <= 53 chars
+          releaseName: "{{project}}-{{env}}-{{path.basename}}"
           valueFiles:
             - values.yaml
+			
+            # optional per-env override
+            # - "../../values-{{env}}.yaml"
 
       destination:
         server: https://kubernetes.default.svc
@@ -56,8 +77,9 @@ spec:
 
       syncPolicy:
         automated:
-          prune: true          # delete resources not in Git
-          selfHeal: true       # revert out-of-band changes
+          prune: true
+          selfHeal: true
+
         syncOptions:
           - CreateNamespace=true
           - ApplyOutOfSyncOnly=true
