@@ -31,8 +31,7 @@ spec:
               repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
               revision: main
               directories:
-                - path: gitops/dev/helm/*
-				
+                - path: gitops/dev/helm/*			
   # Application template
   template:
     metadata:
