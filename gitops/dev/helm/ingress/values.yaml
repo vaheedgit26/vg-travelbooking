@@ -82,10 +82,12 @@ frontendIngress:
   ingressClassName: alb
   path: /
   pathType: Prefix
+  serviceName: frontend-svc
+  servicePort: 8080
   host: ""
 
   annotations:
-    # Backend-specific health check
+    # Frontend-specific health check
     alb.ingress.kubernetes.io/healthcheck-path: /health
     alb.ingress.kubernetes.io/healthcheck-port: traffic-port
   
