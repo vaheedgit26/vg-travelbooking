@@ -5,6 +5,9 @@ baseIngress:
   enabled: false
   name: travelbooking-base-ingress
   ingressClassName: alb
+  frontendServiceName: frontend-svc
+  frontendServicePort: 8080
+  
   
   annotations: 
     # ALB Exposure
