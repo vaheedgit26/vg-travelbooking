@@ -67,7 +67,8 @@ spec:
         helm:
           releaseName: "{{project}}-{{env}}-{{path.basename}}"
           valueFiles:
-            - values.yaml
+            - values.yaml          
+            
             # optional per-env override
             # - "../../values-{{env}}.yaml"
 
