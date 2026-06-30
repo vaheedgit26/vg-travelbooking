@@ -1,22 +1,22 @@
-{{- if .Values.frontend.ingress.enabled }}
+{{- if .Values.frontendIngress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.frontend.ingress.name }}                          # shopverse-frontend-ingress
-  {{- with .Values.frontend.ingress.annotations }}
+  name: {{ .Values.frontendIngress.name }}                          # shopverse-frontend-ingress
+  {{- with .Values.frontendIngress.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 4 }}
   {{- end }}     
 spec:
-  ingressClassName: {{ .Values.frontend.ingress.ingressClassName }}  # alb
+  ingressClassName: {{ .Values.frontendIngress.ingressClassName }}  # alb
   rules:
     - http:
         paths:
-          - path: {{ .Values.frontend.ingress.path }}                # /
-            pathType: {{ .Values.frontend.ingress.pathType }}        # Prefix
+          - path: {{ .Values.frontendIngress.path }}                  # /
+            pathType: {{ .Values.frontendIngress.pathType }}          # Prefix
             backend:
               service:
-                name: {{ .Values.frontend.service.name }}            # shopverse-frontend-svc
+                name: {{ .Values.frontendIngress.serviceName }}       # frontend-svc
                 port:
-                  number: {{ .Values.frontend.service.port }}        # 8080
+                  number: {{ .Values.frontendIngress.servicePort }}   # 8080
 {{- end }}
