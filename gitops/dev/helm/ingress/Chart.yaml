@@ -1,6 +1,6 @@
 apiVersion: v2
-name: shopverse-base-ingress
-description: ShopVerse e-commerce base ingress Helm chart
-type: Base ingress file
+name: Travelbooking-ingress
+description: Travelbooking ingress Helm chart
+type: Ingress file
 version: 1.0.0
 appVersion: "1.0.0"
