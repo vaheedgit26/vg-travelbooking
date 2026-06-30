@@ -65,7 +65,6 @@ backendIngress:
   enabled: false
   name: travelbooking-backend-ingress
   ingressClassName: alb
-  pathType: Prefix
   host: ""
 
   annotations:
