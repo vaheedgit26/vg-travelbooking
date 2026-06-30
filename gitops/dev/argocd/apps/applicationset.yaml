@@ -1,3 +1,4 @@
+# Deploys multiple services to a single DEV environment
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -6,26 +7,22 @@ metadata:
 
 spec:
   generators:
-    # 🔥 MATRIX = envs × projects x services
+    # MATRIX = envs × projects x services
     - matrix:
         generators:
           - list:
               elements:
                 - project: travelbooking
                   env: dev
-                  repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
+                  repoURL: https://github.com/vaheedgit26/vg-travelbooking.git   
                   
-                # 👉 future ready
-                # - project: paymentplatform
-                #   env: prod
-                #   repoURL: https://github.com/org/paymentplatform.git
-
-          # 🔹 SERVICES (auto-discovered from ONE env only to avoid duplication)
+          # SERVICES (auto-discovered from ONE env only to avoid duplication)
           - git:
               repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
               revision: main
               directories:
-                - path: gitops/dev/helm/*			
+                - path: gitops/dev/helm/*   
+                
   # Application template
   template:
     metadata:
