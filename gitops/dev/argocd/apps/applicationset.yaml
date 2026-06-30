@@ -22,6 +22,7 @@ spec:
               elements:
                 - project: travelbooking
                   repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
+                  
                 # 👉 future ready
                 # - project: paymentplatform
                 #   repoURL: https://github.com/org/paymentplatform.git
