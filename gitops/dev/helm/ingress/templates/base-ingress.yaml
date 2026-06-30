@@ -1,14 +1,14 @@
-{{- if .Values.ingress.enabled }}
+{{- if .Values.baseIngress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.ingress.name }}                            # shopverse-base-ingress
-  {{- with .Values.ingress.annotations }}
+  name: {{ .Values.baseIngress.name }}                            # shopverse-base-ingress
+  {{- with .Values.baseIngress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName }}    # alb
+  ingressClassName: {{ .Values.baseIngress.ingressClassName }}    # alb
 
   # ⚠️ Dummy rule (required to create ALB)
   rules:
