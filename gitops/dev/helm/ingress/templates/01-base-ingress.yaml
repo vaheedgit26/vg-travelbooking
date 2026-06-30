@@ -20,5 +20,5 @@ spec:
               service:
                 name: frontend-svc
                 port:
-                  number: 8080
+                  number: 8080 
 {{- end }}
