@@ -4,16 +4,16 @@ module "rds_mysql_sg" {
 
   vpc_id         = data.terraform_remote_state.vpc.outputs.vpc_id
   sg_name        = local.sg_name
-  sg_description = "Mysql RDS Instance Security Group"
+  sg_description = "Postgre RDS Instance Security Group"
 
   common_tags    = local.common_tags
 }
 
-# bastion (public_subnet) ---> mysql (database_subnet)
-resource "aws_security_group_rule" "mysql_bastion" {
+# bastion (public_subnet) ---> postgre (database_subnet)
+resource "aws_security_group_rule" "postgre_bastion" {
   type                     = "ingress"
-  from_port                = 3306
-  to_port                  = 3306
+  from_port                = 5432
+  to_port                  = 5432
   protocol                 = "tcp"
   source_security_group_id = data.terraform_remote_state.bastion.outputs.bastion_sg_id
   security_group_id        = module.rds_mysql_sg.sg_id
@@ -22,10 +22,10 @@ resource "aws_security_group_rule" "mysql_bastion" {
 }
 
 # EKS cluster  --->  mysql (database_subnet)
-resource "aws_security_group_rule" "mysql_backend" {
+resource "aws_security_group_rule" "postgre_backend" {
   type                     = "ingress"
-  from_port                = 3306
-  to_port                  = 3306
+  from_port                = 5432
+  to_port                  = 5432
   protocol                 = "tcp"
   source_security_group_id = data.terraform_remote_state.eks.outputs.cluster_security_group_id
   security_group_id        = module.rds_mysql_sg.sg_id
