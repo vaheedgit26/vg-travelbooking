@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: shopverse-dev-applicationset
+  name: travelbooking-dev-applicationset
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-        - project: shopverse
-          env: dev
-          component: backend
-        - project: shopverse
+        - project: travelbooking
           env: dev
           component: frontend
+        - project: travelbooking
+          env: dev
+          component: user
   # Application template
   template:
     metadata:
@@ -42,7 +42,7 @@ spec:
       project: "{{project}}-{{env}}"         # This name should match with the name of 'AppProject' created previously
       
       source:
-        repoURL: https://github.com/vaheedgit26/vg-shopverse.git
+        repoURL: https://github.com/vaheedgit26/vg-travelbooking.git
         targetRevision: main
         path: "gitops/dev/helm/{{component}}"
         helm:
