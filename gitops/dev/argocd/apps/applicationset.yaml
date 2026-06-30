@@ -67,7 +67,6 @@ spec:
           releaseName: "{{project}}-{{env}}-{{path.basename}}"
           valueFiles:
             - values.yaml
-			
             # optional per-env override
             # - "../../values-{{env}}.yaml"
 
