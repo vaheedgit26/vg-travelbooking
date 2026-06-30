@@ -1,5 +1,5 @@
 # Security Group for Bastion Host
-module "rds_mysql_sg" {
+module "rds_postgre_sg" {
   source = "git::https://github.com/vaheedgit26/Infra-1.0.git//modules/sg"
 
   vpc_id         = data.terraform_remote_state.vpc.outputs.vpc_id
@@ -16,7 +16,7 @@ resource "aws_security_group_rule" "postgre_bastion" {
   to_port                  = 5432
   protocol                 = "tcp"
   source_security_group_id = data.terraform_remote_state.bastion.outputs.bastion_sg_id
-  security_group_id        = module.rds_mysql_sg.sg_id
+  security_group_id        = module.rds_postgre_sg.sg_id
 
   # depends_on = [module.bastion_sg]
 }
@@ -28,7 +28,7 @@ resource "aws_security_group_rule" "postgre_backend" {
   to_port                  = 5432
   protocol                 = "tcp"
   source_security_group_id = data.terraform_remote_state.eks.outputs.cluster_security_group_id
-  security_group_id        = module.rds_mysql_sg.sg_id
+  security_group_id        = module.rds_postgre_sg.sg_id
 
   # depends_on = [module.backend_sg]
 }
