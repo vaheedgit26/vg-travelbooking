@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.backendIngress.name }}                             # shopverse-backend-ingress
   {{- with .Values.backendIngress.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   ingressClassName: {{ .Values.backendIngress.ingressClassName }}     # alb
@@ -13,7 +13,7 @@ spec:
     - http:
         paths:
           - path: /api/users                  
-            pathType: {{ .Values.backend.ingress.pathType }}           # Prefix
+            pathType: {{ .Values.backendIngress.pathType }}           # Prefix
             backend:
               service:
                 name: user-svc
@@ -21,7 +21,7 @@ spec:
                   number: 3001  
 
           - path: /api/search                  
-            pathType: {{ .Values.backend.ingress.pathType }}           # Prefix
+            pathType: {{ .Values.backendIngress.pathType }}           # Prefix
             backend:
               service:
                 name: search-svc
@@ -29,7 +29,7 @@ spec:
                   number: 3002
 
           - path: /api/bookings                 
-            pathType: {{ .Values.backend.ingress.pathType }}           # Prefix
+            pathType: {{ .Values.backendIngress.pathType }}           # Prefix
             backend:
               service:
                 name: booking-svc
@@ -37,7 +37,7 @@ spec:
                   number: 3003 
 
           - path: /api/payments                 
-            pathType: {{ .Values.backend.ingress.pathType }}           # Prefix
+            pathType: {{ .Values.backendIngress.pathType }}           # Prefix
             backend:
               service:
                 name: payment-svc
@@ -45,7 +45,7 @@ spec:
                   number: 3004  
 
           - path: /api/notifications                 
-            pathType: {{ .Values.backend.ingress.pathType }}           # Prefix
+            pathType: {{ .Values.backendIngress.pathType }}           # Prefix
             backend:
               service:
                 name: notification-svc
