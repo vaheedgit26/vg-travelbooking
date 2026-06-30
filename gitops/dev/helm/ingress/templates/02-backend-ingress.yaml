@@ -50,7 +50,5 @@ spec:
               service:
                 name: notification-svc
                 port:
-                  number: 3005  
-
-          
+                  number: 3005        
 {{- end }}
