@@ -51,7 +51,7 @@ spec:
         repoURL: "{{repoURL}}"
         targetRevision: main
 
-        # 🔥 dynamic env + service
+        # Dynamic env + service
         path: "gitops/{{env}}/helm/{{path.basename}}"
 
         helm:
