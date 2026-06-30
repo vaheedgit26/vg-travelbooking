@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: shopverse-dev
+  name: travelbooking-dev
   namespace: argocd
 spec:
   # Allowed Git repositories
