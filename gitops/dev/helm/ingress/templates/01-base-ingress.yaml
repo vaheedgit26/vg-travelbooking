@@ -10,15 +10,15 @@ metadata:
 spec:
   ingressClassName: {{ .Values.baseIngress.ingressClassName }}    # alb
 
-  # ⚠️ Dummy rule (required to create ALB)
+  # ⚠️ Rule (required to create ALB)
   rules:
     - http:
         paths:
-          - path: /dummy
+          - path: /health
             pathType: Prefix
             backend:
               service:
-                name: dummy-service
+                name: frontend-svc
                 port:
-                  number: 80
+                  number: 8080
 {{- end }}
