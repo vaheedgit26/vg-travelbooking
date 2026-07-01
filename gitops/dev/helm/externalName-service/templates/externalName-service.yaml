@@ -1,1 +1,8 @@
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.postgre.externalNameService }}  
+  namespace: {{ .Values.namespace }}
+spec:
+  type: ExternalName
+  externalName: {{ .Values.postgre.host | quote }}
