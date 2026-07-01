@@ -35,7 +35,7 @@ spec:
         component: "{{path.basename}}"
         app.kubernetes.io/part-of: "{{project}}"
 
-      annotations:
+      # annotations:
         # 🔹 Sync order
         #argocd.argoproj.io/sync-wave: >
         #  {{- if eq .path.basename "database" -}}0
