@@ -37,12 +37,12 @@ spec:
 
       annotations:
         # 🔹 Sync order
-        argocd.argoproj.io/sync-wave: >
-          {{- if eq .path.basename "database" -}}0
-          {{- else if or (eq .path.basename "user") (eq .path.basename "search") (eq .path.basename "booking") (eq .path.basename "payment") (eq .path.basename "notification") -}}1
-          {{- else if eq .path.basename "frontend" -}}2
-          {{- else -}}3
-          {{- end }}
+        #argocd.argoproj.io/sync-wave: >
+        #  {{- if eq .path.basename "database" -}}0
+        #  {{- else if or (eq .path.basename "user") (eq .path.basename "search") (eq .path.basename "booking") (eq .path.basename "payment") (eq .path.basename "notification") -}}1
+        #  {{- else if eq .path.basename "frontend" -}}2
+        #  {{- else -}}3
+        #  {{- end }}
 
     spec:
       project: "{{project}}-{{env}}"              # This name should match with the name of 'AppProject' created previously
