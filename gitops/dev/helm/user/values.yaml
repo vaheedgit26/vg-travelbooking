@@ -26,7 +26,7 @@ configmap:
     name: user-config
 
 secret:
-    name: travelbooking-dev-postgre-jwt-credentials
+    name: travelbooking-dev-postgre-jwt-creds
 
 # ──────────────────────────────────────
 # Postgre DB
