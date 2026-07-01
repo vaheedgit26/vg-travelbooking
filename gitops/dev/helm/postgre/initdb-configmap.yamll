@@ -1,3 +1,5 @@
+{{- if false }}
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,3 +12,5 @@ data:
     CREATE DATABASE {{ .Values.db.bookingDb }};           # bookingdb
     CREATE DATABASE {{ .Values.db.paymentDb }};           # paymentdb
     CREATE DATABASE {{ .Values.db.notificationDb }};      # notificationdb
+
+{{- end }}
