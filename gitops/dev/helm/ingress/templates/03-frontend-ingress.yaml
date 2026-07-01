@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: {{ .Values.frontendIngress.name }}                          # shopverse-frontend-ingress
   {{- with .Values.frontendIngress.annotations }}
+  namespace: {{ .Values.namespace }}                                # travelbooking-dev
   annotations:
   {{- toYaml . | nindent 4 }}
   {{- end }}     
