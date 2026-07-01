@@ -1,5 +1,5 @@
 apiVersion: v2
-name: travelbooking-externalname service
+name: travelbooking-externalname-service
 description: Travel Booking Platform - Booking Helm Chart - External name service
 type: application
 version: 0.1.0
