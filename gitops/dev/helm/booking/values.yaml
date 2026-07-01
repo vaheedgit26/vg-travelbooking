@@ -26,7 +26,7 @@ configmap:
     name: booking-config
 
 secret:
-    name: travelbooking-dev-postgre-jwt-credentials
+    name: travelbooking-dev-postgre-jwt-creds
 
 userService:
     servicename: user-svc
