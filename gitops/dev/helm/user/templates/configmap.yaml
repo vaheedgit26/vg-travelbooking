@@ -9,4 +9,4 @@ data:
   DB_HOST: {{ .Values.postgre.externalNameService | quote }}
   DB_PORT: {{ .Values.postgre.port | quote }}
   DB_NAME: {{ .Values.postgre.database | quote }}
-  # DB_SSLMODE: {{ .Values.db.sslmode | quote }}
+  # DB_SSLMODE: disable
