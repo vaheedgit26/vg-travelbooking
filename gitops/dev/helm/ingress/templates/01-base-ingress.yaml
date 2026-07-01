@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: {{ .Values.baseIngress.name }}                            # travelbooking-base-ingress
   {{- with .Values.baseIngress.annotations }}
+  namespace: {{ .Values.namespace }}                              # travelbooking-dev
   annotations:
   {{- toYaml . | nindent 4 }}
   {{- end }}
