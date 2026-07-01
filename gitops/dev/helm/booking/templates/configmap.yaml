@@ -9,6 +9,6 @@ data:
   DB_HOST: {{ .Values.postgre.externalNameService | quote }}
   DB_PORT: {{ .Values.postgre.port | quote }}
   DB_NAME: {{ .Values.postgre.database | quote }}
-  # DB_SSLMODE: {{ .Values.postgre.sslmode | quote }}
+  # DB_SSLMODE: disable
   USER_SERVICE_URL: "http://{{ .Values.userService.servicename }}:3001"
   NOTIFICATION_SERVICE_URL: "http://{{ .Values.notificationService.servicename }}:3005"
