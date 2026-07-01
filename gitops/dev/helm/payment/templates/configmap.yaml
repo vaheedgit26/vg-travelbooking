@@ -9,6 +9,6 @@ data:
   DB_HOST: {{ .Values.postgre.externalNameService | quote }}
   DB_PORT: {{ .Values.postgre.port | quote }}
   DB_NAME: {{ .Values.postgre.database | quote }}
-  # DB_SSLMODE: "disable"
+  # DB_SSLMODE: disable
   BOOKING_SERVICE_URL: "http://{{ .Values.bookingService.servicename }}:3003"
   NOTIFICATION_SERVICE_URL: "http://{{ .Values.notificationService.servicename }}:3005"
