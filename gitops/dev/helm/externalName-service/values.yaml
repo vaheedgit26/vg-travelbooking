@@ -1,2 +1,4 @@
+namespace: travelbooking-dev
 postgre:
   host: travelbooking-dev-postgre.ca9aykaigakf.us-east-1.rds.amazonaws.com
+  externalNameService: travelbooking-postgre-ens
