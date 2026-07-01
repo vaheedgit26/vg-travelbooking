@@ -11,7 +11,7 @@ module "rds" {
   allocated_storage       = 10  # 20
   storage_type            = "gp2"
   storage_encrypted       = false   # true
-  # db_name                 = "shopverse"
+  db_name                 = "sampledb"
   db_username             = local.travelbooking_secret_json.username
   db_password             = local.travelbooking_secret_json.password
   db_subnet_group_name    = local.db_subnet_group_name
