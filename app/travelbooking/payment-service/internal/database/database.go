@@ -3,7 +3,6 @@ package database
 import (
 	"fmt"
 	"payment-service/internal/config"
-
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
