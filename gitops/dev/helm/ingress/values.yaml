@@ -80,7 +80,7 @@ backendIngress:
     alb.ingress.kubernetes.io/group.order: "10"  
 
     # Target pods directly
-    alb.ingress.kubernetes.io/target-type: ip
+    # alb.ingress.kubernetes.io/target-type: ip
     
 # ──────────────────────────────────────-----------------------------------------------------------
 # Frontend Ingress
@@ -110,4 +110,4 @@ frontendIngress:
     alb.ingress.kubernetes.io/group.order: "20"   
 
     # Target pods directly
-    alb.ingress.kubernetes.io/target-type: ip
+    # alb.ingress.kubernetes.io/target-type: ip
