@@ -7,14 +7,22 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"os"
 )
 
 var DB *gorm.DB
 
 func Connect(cfg *config.Config) error {
+	
+	sslMode := os.Getenv("DB_SSLMODE")
+	
+    if sslMode == "" {
+        sslMode = "require"
+    }
+	
 	dsn := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable TimeZone=UTC",
-		cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, cfg.DBName,
+		cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, cfg.DBName, sslMode,
 	)
 	logMode := logger.Silent
 	if cfg.NodeEnv == "development" {
