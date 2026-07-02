@@ -3,7 +3,6 @@ package database
 import (
 	"fmt"
 	"notification-service/internal/config"
-
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -13,6 +12,7 @@ import (
 var DB *gorm.DB
 
 func Connect(cfg *config.Config) error {
+	
 	sslMode := os.Getenv("DB_SSLMODE")
 	
     if sslMode == "" {
@@ -20,7 +20,7 @@ func Connect(cfg *config.Config) error {
     }
 	
 	dsn := fmt.Sprintf(
-		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable TimeZone=UTC",
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s TimeZone=UTC",
 		cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, cfg.DBName, sslMode,
 	)
 	logMode := logger.Silent
