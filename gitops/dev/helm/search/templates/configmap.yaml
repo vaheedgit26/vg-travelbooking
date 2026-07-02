@@ -9,6 +9,6 @@ data:
   DB_HOST: {{ .Values.postgre.externalNameService | quote }}
   DB_PORT: {{ .Values.postgre.port | quote }}
   DB_NAME: {{ .Values.postgre.database | quote }}
-  # DB_SSLMODE: disable
+  DB_SSLMODE: disable
   REDIS_HOST: {{ .Values.redis.host | quote }}
   REDIS_PORT: {{ .Values.redis.port | quote }}
