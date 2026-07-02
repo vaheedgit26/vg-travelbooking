@@ -1,6 +1,10 @@
+# Install Postgresql-15 client
+--------------------------------
 sudo dnf install postgresql15 -y
 psql --version
 
+# Login to Postgresql and create following databases
+----------------------------------------------------
 CREATE DATABASE  userdb;
 CREATE DATABASE  searchdb;
 CREATE DATABASE  bookingdb;
