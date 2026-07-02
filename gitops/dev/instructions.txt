@@ -1,0 +1,3 @@
+sudo dnf install postgresql15 -y
+psql --version
+
