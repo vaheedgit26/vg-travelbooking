@@ -21,7 +21,7 @@ baseIngress:
     alb.ingress.kubernetes.io/target-type: ip
     
     # HTTP + HTTPS listeners
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/ip-address-type: ipv4
 
     # ALB to Kubernetes service protocol
