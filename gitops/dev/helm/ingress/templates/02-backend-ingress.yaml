@@ -3,8 +3,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Values.backendIngress.name }}                             # shopverse-backend-ingress
-  {{- with .Values.backendIngress.annotations }}
   namespace: {{ .Values.namespace }}                                  # travelbooking-dev
+  {{- with .Values.backendIngress.annotations }}
   annotations:
   {{- toYaml . | nindent 4 }}
   {{- end }}
