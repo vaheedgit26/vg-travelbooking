@@ -7,3 +7,4 @@ deployment:
 service:
   name: redis-svc
   port: 6379
+  targetPort: 6379
