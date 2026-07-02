@@ -12,6 +12,7 @@ import (
 var DB *gorm.DB
 
 func Connect(cfg *config.Config) error {
+	
 	sslMode := os.Getenv("DB_SSLMODE")
 	
     if sslMode == "" {
