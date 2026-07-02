@@ -6,7 +6,7 @@ namespace: travelbooking-dev
 image:
     uri: 254405569649.dkr.ecr.us-east-1.amazonaws.com
     name: travelbooking/booking
-    version: v2
+    version: v3
 
 deployment:
     name: booking-deploy
