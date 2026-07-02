@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
-  namespace: {{ .Values.deployment.name }}     # travelbooking-dev
+  name: {{ .Values.deployment.name }}          # redis
+  namespace: {{ .Values.deployment.namespace }}     # travelbooking-dev
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
