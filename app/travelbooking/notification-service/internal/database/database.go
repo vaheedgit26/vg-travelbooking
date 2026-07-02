@@ -16,7 +16,7 @@ func Connect(cfg *config.Config) error {
 	sslMode := os.Getenv("DB_SSLMODE")
 	
     if sslMode == "" {
-         sslMode = "require"
+        sslMode = "require"
     }
 	
 	dsn := fmt.Sprintf(
