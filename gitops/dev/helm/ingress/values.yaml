@@ -4,7 +4,7 @@ namespace: travelbooking-dev
 # ──────────────────────────────────────---------------------------------------------------
 baseIngress:
 
-  enabled: false
+  enabled: true
   name: travelbooking-base-ingress
   ingressClassName: alb
 
@@ -63,7 +63,7 @@ baseIngress:
 # ──────────────────────────────────────----------------------------------------------------------
 backendIngress:
 
-  enabled: false
+  enabled: true
   name: travelbooking-backend-ingress
   ingressClassName: alb
   host: ""
@@ -84,7 +84,7 @@ backendIngress:
 # ──────────────────────────────────────-----------------------------------------------------------
 frontendIngress:
 
-  enabled: false
+  enabled: true
   name: travelbooking-frontend-ingress
   ingressClassName: alb
   host: ""
