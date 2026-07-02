@@ -1,3 +1,8 @@
 sudo dnf install postgresql15 -y
 psql --version
 
+CREATE DATABASE  userdb;
+CREATE DATABASE  searchdb;
+CREATE DATABASE  bookingdb;
+CREATE DATABASE  paymentdb;
+CREATE DATABASE  notificationdb;
