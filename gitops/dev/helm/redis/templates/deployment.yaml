@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.deployment.name }}          # redis
-  namespace: {{ .Values.deployment.namespace }}     # travelbooking-dev
+  namespace: {{ .Values.namespace }}     # travelbooking-dev
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
